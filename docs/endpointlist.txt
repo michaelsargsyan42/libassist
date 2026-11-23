@@ -1,0 +1,13 @@
+GET    /v1/books?q=...                 search the catalogue (hybrid search) with live availability
+GET    /v1/books/{book_id}
+GET    /v1/policies                    list policy documents
+GET    /v1/policies/search?q=...       retrieve policy passages with citations (the RAG endpoint)
+GET    /v1/policies/{doc_id}           one policy document (markdown)
+POST   /v1/members/verify              identity check (member id + last name)
+GET    /v1/members/{member_id}         returns an ETag
+PATCH  /v1/members/{member_id}         requires If-Match (optimistic concurrency)
+GET    /v1/members/{member_id}/account loans, fines, holds, renewal eligibility
+POST   /v1/loans/{loan_id}/renewals    renew; supports Idempotency-Key
+POST   /v1/holds                       place a hold; supports Idempotency-Key; 201 + Location
+GET    /v1/holds/{hold_id}
+DELETE /v1/holds/{hold_id}             cancel; idempotent by HTTP semantics
